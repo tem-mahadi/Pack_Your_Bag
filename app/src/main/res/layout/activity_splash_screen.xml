@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreen"
+    android:background="@drawable/wave2"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appIcon"
+        android:src="@drawable/app_icon_two"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAppName"
+        android:layout_below="@+id/appIcon"
+        android:layout_centerInParent="true"
+        android:text="Pack Your Bag"
+        android:textSize="45dp"
+        android:textStyle="bold|italic"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="from"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/txtAppName"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:id="@+id/txtFrom"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMe"
+        android:layout_below="@+id/txtFrom"
+        android:textSize="30dp"
+        android:textColor="@color/purple_soft"
+        android:text="TEM MAHADI"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        />
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="180dp"
+        android:src="@drawable/shopping_bag"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/txtMe"
+        />
+
+
+
+
+</RelativeLayout>

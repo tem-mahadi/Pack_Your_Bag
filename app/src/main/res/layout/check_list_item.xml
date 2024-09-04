@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginBottom="5dp"
+    android:padding="10dp"
+    android:textAlignment="center"
+    android:id="@+id/linearLayout"
+    android:orientation="horizontal"
+    >
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkbox"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="hello hi whats up"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/deleteBtn"
+        android:background="@drawable/baseline_delete_24"
+        />
+
+</LinearLayout>
