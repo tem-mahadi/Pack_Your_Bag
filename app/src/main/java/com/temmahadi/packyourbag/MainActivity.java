@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences= getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username","");
+        Toast.makeText(getApplicationContext(),"Welcome "+username,Toast.LENGTH_SHORT).show();
+
         Objects.requireNonNull(getSupportActionBar()).hide();
         recyclerView= findViewById(R.id.recyclerView);
         addAllTitles();
@@ -38,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
-
     }
 
     private static final int TIME_INTERVAL = 2000;

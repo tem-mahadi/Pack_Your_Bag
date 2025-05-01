@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.temmahadi.packyourbag.Adapter.Check_list_adapter;
+import com.temmahadi.packyourbag.BackEnd.LoginActivity;
 import com.temmahadi.packyourbag.Constants.MyConstants;
 import com.temmahadi.packyourbag.Data.appData;
 import com.temmahadi.packyourbag.DataBase.roomDB;
@@ -143,8 +146,12 @@ public class CheckList extends AppCompatActivity {
              startActivity(intent);
             return true;
         } else if (id == R.id.btnExit) {
-             this.finishAffinity();
-             Toast.makeText(this, "Pack your bag\nExit completed.", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences= getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear(); editor.apply();
+            intent = new Intent(this, SplashScreen.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
