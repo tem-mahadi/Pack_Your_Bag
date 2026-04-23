@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Core brand palette -->
+    <color name="primary">#C06C84</color>
+    <color name="primary_dark">#985277</color>
+    <color name="primary_light">#D4899D</color>
+    <color name="accent">#F67280</color>
+    <color name="accent_light">#FFACB4</color>
+
+    <!-- Surface / Background -->
+    <color name="surface">#FFF5F5</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="background_warm">#FFF0EE</color>
+    <color name="background_checklist">#FBF0EF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#2D2D2D</color>
+    <color name="text_secondary">#6B6B6B</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_hint">#AAAAAA</color>
+
+    <!-- Status -->
+    <color name="status_packed">#4CAF50</color>
+    <color name="status_packed_light">#C8E6C9</color>
+    <color name="status_partial">#FF9800</color>
+    <color name="status_partial_light">#FFE0B2</color>
+    <color name="status_empty">#E0E0E0</color>
+
+    <!-- Progress ring -->
+    <color name="progress_track">#F0E0E0</color>
+    <color name="progress_low">#F67280</color>
+    <color name="progress_mid">#FF9800</color>
+    <color name="progress_high">#4CAF50</color>
+
+    <!-- Weather card tints -->
+    <color name="weather_hot">#FFF3E0</color>
+    <color name="weather_cold">#E3F2FD</color>
+    <color name="weather_mild">#F1F8E9</color>
+    <color name="weather_storm">#ECEFF1</color>
+
+    <!-- Trip type badge -->
+    <color name="badge_leisure">#E8F5E9</color>
+    <color name="badge_leisure_text">#2E7D32</color>
+    <color name="badge_business">#E3F2FD</color>
+    <color name="badge_business_text">#1565C0</color>
+    <color name="badge_family">#FFF3E0</color>
+    <color name="badge_family_text">#E65100</color>
+    <color name="badge_adventure">#FCE4EC</color>
+    <color name="badge_adventure_text">#AD1457</color>
+    <color name="badge_camping">#F1F8E9</color>
+    <color name="badge_camping_text">#33691E</color>
+
+    <!-- Divider -->
+    <color name="divider">#E8D5D5</color>
+
+    <!-- Legacy (kept for backward compatibility in existing drawables) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -10,7 +64,7 @@
     <color name="green">#00ff00</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="purple_soft"> 	#A52A2A</color>
+    <color name="purple_soft">#A52A2A</color>
     <color name="fading_blue">#658CBB</color>
     <color name="lavender">#8692f7</color>
     <color name="metal">#c2c4c7</color>

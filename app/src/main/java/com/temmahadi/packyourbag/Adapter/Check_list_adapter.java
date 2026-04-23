@@ -3,18 +3,21 @@ package com.temmahadi.packyourbag.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.animation.AlphaAnimation;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.temmahadi.packyourbag.Constants.MyConstants;
 import com.temmahadi.packyourbag.DataBase.roomDB;
 import com.temmahadi.packyourbag.Models.items;
@@ -25,14 +28,16 @@ import java.util.List;
 public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder>{
     Context context; List<items> list; roomDB database; String show;
     Toast message = null; // Declare the Toast variable outside onClick
+    Runnable onListChanged;
+    int tripId;
 
-    public Check_list_adapter(Context context, List<items> list, roomDB database, String show) {
+    public Check_list_adapter(Context context, List<items> list, roomDB database, String show, int tripId, Runnable onListChanged) {
         this.context = context;
         this.list = list;
         this.database = database;
         this.show = show;
-        if(list.size()==0)
-            Toast.makeText(context.getApplicationContext(),"Nothing to show",Toast.LENGTH_SHORT).show();
+        this.tripId = tripId;
+        this.onListChanged = onListChanged;
     }
 
     @NonNull
@@ -43,19 +48,33 @@ public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull checkListViewHolder holder, int position) {
-        holder.checkBox.setText(list.get(position).getItemName());
-        holder.checkBox.setChecked(list.get(position).getChecked());
+        items currentItem = list.get(position);
+        boolean isChecked = Boolean.TRUE.equals(currentItem.getChecked());
 
+        holder.checkBox.setText(currentItem.getItemName());
+        holder.checkBox.setChecked(isChecked);
+
+        // Strikethrough + style for packed items
+        applyPackedStyle(holder, isChecked);
+
+        // Color stripe
+        int stripeColor = isChecked
+                ? ContextCompat.getColor(context, R.color.status_packed)
+                : ContextCompat.getColor(context, R.color.status_empty);
+        holder.viewStripe.setBackgroundColor(stripeColor);
+
+        // Hide delete button in My Selections view
         if(MyConstants.FALSE_STRING.equals(show)){
             holder.deleteBtn.setVisibility(View.GONE);
-            holder.layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_one));
         } else {
-            if(list.get(position).getChecked()){
-                holder.layout.setBackgroundColor(Color.parseColor("#8e546f"));
-            } else {
-                holder.layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_one));
-            }
+            holder.deleteBtn.setVisibility(View.VISIBLE);
         }
+
+        // Fade-in animation
+        AlphaAnimation fadeIn = new AlphaAnimation(0f, 1f);
+        fadeIn.setDuration(250);
+        fadeIn.setStartOffset(position * 30L);
+        holder.itemView.startAnimation(fadeIn);
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,21 +86,31 @@ public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder
                 database.mainDAO().checkUncheck(list.get(adapterPosition).getID(), check);
 
                 if (MyConstants.FALSE_STRING.equals(show)) {
-                    list = database.mainDAO().getAllSelected(true);
+                    list = database.mainDAO().getAllSelected(true, tripId);
                     notifyDataSetChanged();
                 } else {
                     list.get(adapterPosition).setChecked(check);
-                    notifyItemChanged(adapterPosition);
+                    applyPackedStyle(holder, check);
+
+                    // Animate stripe color
+                    int newStripeColor = check
+                            ? ContextCompat.getColor(context, R.color.status_packed)
+                            : ContextCompat.getColor(context, R.color.status_empty);
+                    holder.viewStripe.setBackgroundColor(newStripeColor);
 
                     if (message != null) {
-                        message.cancel(); // Cancel the previous toast if it exists
+                        message.cancel();
                     }
                     if (list.get(adapterPosition).getChecked()) {
-                        message = Toast.makeText(context, "(" + holder.checkBox.getText() + ") Is-Packed", Toast.LENGTH_SHORT);
+                        message = Toast.makeText(context, "✅ " + holder.checkBox.getText() + " packed", Toast.LENGTH_SHORT);
                     } else {
-                        message = Toast.makeText(context, "(" + holder.checkBox.getText() + ") Un-Packed", Toast.LENGTH_SHORT);
+                        message = Toast.makeText(context, "📦 " + holder.checkBox.getText() + " unpacked", Toast.LENGTH_SHORT);
                     }
                     message.show();
+                }
+
+                if (onListChanged != null) {
+                    onListChanged.run();
                 }
             }
         });
@@ -100,6 +129,9 @@ public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder
                                 database.mainDAO().delete(list.get(adapterPosition));
                                 list.remove(adapterPosition);
                                 notifyItemRemoved(adapterPosition);
+                                if (onListChanged != null) {
+                                    onListChanged.run();
+                                }
                             }
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
@@ -111,6 +143,22 @@ public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder
         });
     }
 
+    private void applyPackedStyle(checkListViewHolder holder, boolean isPacked) {
+        if (isPacked) {
+            holder.checkBox.setPaintFlags(holder.checkBox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.checkBox.setTextColor(ContextCompat.getColor(context, R.color.text_hint));
+            if (holder.itemCard != null) {
+                holder.itemCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.status_packed_light));
+            }
+        } else {
+            holder.checkBox.setPaintFlags(holder.checkBox.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            holder.checkBox.setTextColor(ContextCompat.getColor(context, R.color.text_primary));
+            if (holder.itemCard != null) {
+                holder.itemCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.surface_card));
+            }
+        }
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -118,11 +166,14 @@ public class Check_list_adapter extends RecyclerView.Adapter<checkListViewHolder
 }
 
 class checkListViewHolder extends RecyclerView.ViewHolder{
-    LinearLayout layout; CheckBox checkBox; Button deleteBtn;
+    LinearLayout layout; CheckBox checkBox; ImageButton deleteBtn;
+    View viewStripe; MaterialCardView itemCard;
     public checkListViewHolder(@NonNull View itemView) {
         super(itemView);
         layout= itemView.findViewById(R.id.linearLayout);
         checkBox= itemView.findViewById(R.id.checkbox);
         deleteBtn= itemView.findViewById(R.id.deleteBtn);
+        viewStripe = itemView.findViewById(R.id.viewStripe);
+        itemCard = itemView.findViewById(R.id.itemCard);
     }
 }

@@ -1,31 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginBottom="5dp"
-    android:padding="10dp"
-    android:textAlignment="center"
-    android:id="@+id/linearLayout"
-    android:orientation="horizontal"
-    >
-    <CheckBox
-        android:layout_width="0dp"
-        android:layout_weight="5"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkbox"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:text="hello hi whats up"
-        />
-    <Button
-        android:layout_width="0dp"
-        android:layout_weight="0.7"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/deleteBtn"
-        android:background="@drawable/baseline_delete_24"
-        />
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="6dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="0dp">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="8dp">
+
+        <!-- Color stripe indicator -->
+        <View
+            android:id="@+id/viewStripe"
+            android:layout_width="4dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/checklist_stripe" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="15sp"
+            android:textColor="@color/text_primary"
+            android:text="Item name"
+            android:buttonTint="@color/primary" />
+
+        <ImageButton
+            android:id="@+id/deleteBtn"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_delete_24"
+            android:contentDescription="Delete"
+            android:scaleType="centerInside"
+            android:padding="6dp"
+            app:tint="@color/text_hint" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

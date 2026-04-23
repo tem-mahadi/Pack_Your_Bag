@@ -2,6 +2,7 @@ package com.temmahadi.packyourbag.Models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -17,8 +18,12 @@ public class items implements Serializable{
     String addedBy;
     @ColumnInfo(name = "checked")
     Boolean checked=false;
+    @ColumnInfo(name = "tripid")
+    int tripId;
+
     public items(){}
 
+    @Ignore
     public items(String itemName, String category, String addedBy, Boolean checked) {
         this.itemName = itemName;
         this.category = category;
@@ -26,11 +31,21 @@ public class items implements Serializable{
         this.checked = checked;
     }
 
+    @Ignore
     public items(String itemName, String category, Boolean checked) {
         this.addedBy = "system";
         this.itemName = itemName;
         this.category = category;
         this.checked = checked;
+    }
+
+    @Ignore
+    public items(String itemName, String category, Boolean checked, int tripId) {
+        this.addedBy = "system";
+        this.itemName = itemName;
+        this.category = category;
+        this.checked = checked;
+        this.tripId = tripId;
     }
 
     public int getID() {
@@ -71,5 +86,13 @@ public class items implements Serializable{
 
     public void setChecked(Boolean checked) {
         this.checked = checked;
+    }
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
     }
 }

@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.room.Room;
-
 import com.temmahadi.packyourbag.Constants.MyConstants;
 import com.temmahadi.packyourbag.DataBase.roomDB;
 import com.temmahadi.packyourbag.Models.items;
@@ -108,9 +106,17 @@ public class appData extends Application {
         listOfAllItems.add(getNeedsData());
         return listOfAllItems;
     }
-    public void persistAlldata(){
+
+    private void assignTripToItems(List<items> itemList, int tripId) {
+        for (items item : itemList) {
+            item.setTripId(tripId);
+        }
+    }
+
+    public void persistAlldata(int tripId){
         List<List<items>> listOfAllItems= getAllData();
         for (List<items> list: listOfAllItems){
+            assignTripToItems(list, tripId);
             for (items item: list){
                 database.mainDAO().saveItem(item);
             }
@@ -118,10 +124,11 @@ public class appData extends Application {
         System.out.println("Data Added");
     }
 
-    public void persistDataByCategory(String category, Boolean onlyDelete) {
+    public void persistDataByCategory(String category, Boolean onlyDelete, int tripId) {
         try {
-            List<items> list = deleteAndGetListByCategory(category, onlyDelete);
+            List<items> list = deleteAndGetListByCategory(category, onlyDelete, tripId);
             if (!onlyDelete) {
+                assignTripToItems(list, tripId);
                 for (items item : list) {
                     database.mainDAO().saveItem(item);
                 }
@@ -136,11 +143,12 @@ public class appData extends Application {
             Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
         }
     }
-    private List<items> deleteAndGetListByCategory(String category, Boolean onlyDelete) {
+
+    private List<items> deleteAndGetListByCategory(String category, Boolean onlyDelete, int tripId) {
         if (onlyDelete) {
-            database.mainDAO().deleteAllByCategoryAndAddedBy(category, MyConstants.SYSTEM_SMALL);
+            database.mainDAO().deleteAllByCategoryAndAddedBy(category, MyConstants.SYSTEM_SMALL, tripId);
         } else {
-            database.mainDAO().deleteAllByCategory(category) ;
+            database.mainDAO().deleteAllByCategory(category, tripId) ;
         }
         switch (category) {
             case MyConstants.BASIC_NEEDS_CAMEL_CASE:
@@ -166,5 +174,5 @@ public class appData extends Application {
             default:
                 return new ArrayList<>();
         }
-        }
+            }
 }

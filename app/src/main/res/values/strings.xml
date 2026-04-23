@@ -1,3 +1,119 @@
 <resources>
     <string name="app_name">Pack Your Bag</string>
+    <string name="main_title">Pack Your Bag</string>
+    <string name="dashboard_trip_missing">No trip profile yet. Add one to personalize reminders.</string>
+    <string name="dashboard_trip_summary">Trip: %1$s (%2$s to %3$s) - %4$s</string>
+    <string name="dashboard_packed_summary">%1$d / %2$d packed</string>
+    <string name="dashboard_readiness">Readiness: %1$d%%</string>
+    <string name="trip_countdown">🗓️ %1$d days to go!</string>
+    <string name="trip_countdown_today">🎉 Trip starts today!</string>
+    <string name="trip_countdown_past">Trip has started</string>
+    <string name="btn_trip_profile">Trip Profile</string>
+    <string name="btn_manage_trips">Manage Trips</string>
+    <string name="btn_set_reminder">Set Daily Reminder</string>
+    <string name="btn_weather_suggestions">Weather Suggestions</string>
+    <string name="packed_items_count">Showing %1$d packed item(s)</string>
+    <string name="category_progress_text">Packed %1$d of %2$d (%3$d%%)</string>
+
+    <string name="weather_missing_destination">Add a destination in your trip profile to see weather insights.</string>
+    <string name="weather_loading">Checking weather for %1$s...</string>
+    <string name="weather_unavailable">Weather insights are currently unavailable.</string>
+    <string name="weather_summary">%5$s Weather in %1$s: %2$s  %3$.0f°C – %4$.0f°C</string>
+    <string name="weather_summary_label">%1$s · %2$s</string>
+    <string name="weather_temp_range">%1$.0f°C – %2$.0f°C</string>
+    <string name="weather_fetch_first">Weather data is not ready yet. Try again shortly.</string>
+    <string name="weather_no_new_suggestions">No new weather-based suggestions right now.</string>
+    <string name="weather_suggestions_added">Added %1$d weather-based item(s).</string>
+    <string name="weather_code_clear">Clear sky</string>
+    <string name="weather_code_partly_cloudy">Partly cloudy</string>
+    <string name="weather_code_overcast">Overcast</string>
+    <string name="weather_code_fog">Fog</string>
+    <string name="weather_code_drizzle">Drizzle</string>
+    <string name="weather_code_freezing_drizzle">Freezing drizzle</string>
+    <string name="weather_code_rain">Rain</string>
+    <string name="weather_code_freezing_rain">Freezing rain</string>
+    <string name="weather_code_snow">Snow</string>
+    <string name="weather_code_snow_grains">Snow grains</string>
+    <string name="weather_code_rain_showers">Rain showers</string>
+    <string name="weather_code_snow_showers">Snow showers</string>
+    <string name="weather_code_thunderstorm">Thunderstorm</string>
+    <string name="weather_code_thunderstorm_hail">Thunderstorm with hail</string>
+    <string name="weather_code_unknown">Mixed conditions</string>
+
+    <string name="trip_profile_title">Trip Profile</string>
+    <string name="default_trip_name">My Trip</string>
+    <string name="trip_name_hint">Trip Name</string>
+    <string name="trip_destination_hint">Destination</string>
+    <string name="trip_type_label">Trip Type</string>
+    <string name="trip_start_date">Start Date</string>
+    <string name="trip_end_date">End Date</string>
+    <string name="trip_pick_date">Pick Date</string>
+    <string name="trip_save">Save Trip Profile</string>
+    <string name="trip_destination_required">Destination is required.</string>
+    <string name="trip_date_validation">End date should be on or after start date.</string>
+    <string name="trip_profile_saved">Trip profile saved.</string>
+
+    <string name="trips_title">Trips</string>
+    <string name="trips_subtitle">Tap a trip to activate it. Long press to delete.</string>
+    <string name="trips_add">Add Trip</string>
+    <string name="trips_edit_active">Edit Active</string>
+    <string name="trips_active_badge">[Active] </string>
+    <string name="trips_switched">Switched to %1$s</string>
+    <string name="trips_created">Created %1$s</string>
+    <string name="trips_delete_last_blocked">At least one trip must remain.</string>
+    <string name="trips_delete_title">Delete %1$s?</string>
+    <string name="trips_delete_message">This will remove all checklist items in this trip.</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="reminder_channel_name">Packing Reminder</string>
+    <string name="reminder_channel_description">Daily reminders to review your checklist before travel.</string>
+    <string name="reminder_notification_title">Pack Your Bag Reminder</string>
+    <string name="reminder_notification_done">You are fully packed. Great job!</string>
+    <string name="reminder_notification_pending">%1$d item(s) still pending.</string>
+    <string name="reminder_set_success">Daily reminder set for %1$s</string>
+    <string name="permission_notification_needed">Notification permission is required to set reminders.</string>
+
+    <string-array name="trip_type_options">
+        <item>Leisure</item>
+        <item>Business</item>
+        <item>Family</item>
+        <item>Adventure</item>
+        <item>Camping</item>
+    </string-array>
+
+    <!-- BdApps Subscription UI -->
+    <string name="landing_subtitle">Never forget what matters</string>
+    <string name="landing_price_label">ONLY</string>
+    <string name="landing_price">2Tk</string>
+    <string name="landing_price_period">Per Day</string>
+    <string name="landing_feature1_title">Smart Packing Lists</string>
+    <string name="landing_feature1_desc">Organize items by category with progress tracking</string>
+    <string name="landing_feature2_title">Weather-Based Suggestions</string>
+    <string name="landing_feature2_desc">Get packing tips based on your destination weather</string>
+    <string name="landing_feature3_title">Trip Management</string>
+    <string name="landing_feature3_desc">Create and manage multiple trips effortlessly</string>
+    <string name="landing_register">Register Now</string>
+    <string name="landing_footer">By registering, you agree to subscribe to Pack Your Bag\nservice at 2Tk/Day (excluding SD+VAT).</string>
+    <string name="bdapps_powered">Powered by BdApps</string>
+    <string name="login_subtitle">Subscribe to access all features</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="mobile_number_hint">We\'ll send you a verification code via SMS</string>
+    <string name="mobile_number_placeholder">01XXXXXXXXX</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="verify_otp_title">Verify OTP</string>
+    <string name="enter_otp">Enter Verification Code</string>
+    <string name="otp_sent_message">A 6-digit code has been sent to your mobile number</string>
+    <string name="verify_otp">Verify</string>
+
+    <!-- Unsubscribe -->
+    <string name="unsubscribe_title">Unsubscribe?</string>
+    <string name="unsubscribe_message">You will lose access to all premium features including weather suggestions, trip management, and smart packing lists.\n\nAre you sure you want to unsubscribe?</string>
+    <string name="unsubscribe_cancel">Stay Subscribed</string>
+    <string name="unsubscribe_confirm">Yes, Unsubscribe</string>
+    <string name="unsubscribe_success">Successfully unsubscribed. We\'ll miss you!</string>
+    <string name="unsubscribe_failed">Unsubscribe failed. Please try again.</string>
+    <string name="unsubscribing">Unsubscribing…</string>
+    <string name="no_mobile_found">No mobile number found. Please contact support.</string>
+
 </resources>

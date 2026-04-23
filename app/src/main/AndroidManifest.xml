@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 
     <application
@@ -18,20 +19,32 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".TripProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
+        <activity
+            android:name=".TripsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
+        <activity
             android:name=".AboutUs"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
         <activity
             android:name=".CheckList"
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
+        <activity
+            android:name=".BdApps_Backend.LandingActivity"
             android:exported="false" />
         <activity
-            android:name=".BackEnd.RegisterActivity"
-            android:exported="false" />
+            android:name=".BdApps_Backend.MobileNumberActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
         <activity
-            android:name=".BackEnd.OTPActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BackEnd.LoginActivity"
-            android:exported="false" />
+            android:name=".BdApps_Backend.OTPActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PackYourBag.WithToolbar" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -40,6 +53,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".PackingReminderReceiver"
+            android:exported="false" />
     </application>
 
 </manifest>

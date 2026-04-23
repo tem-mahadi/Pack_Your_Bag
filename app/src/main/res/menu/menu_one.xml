@@ -13,6 +13,21 @@
         android:id="@+id/btnDeleteDefault"
         android:title="Delete default data"/>
     <item
+        android:id="@+id/btnMarkAllPacked"
+        android:title="Mark all packed"/>
+    <item
+        android:id="@+id/btnMarkAllUnpacked"
+        android:title="Mark all unpacked"/>
+    <item
+        android:id="@+id/btnDeletePackedCustom"
+        android:title="Delete packed custom items"/>
+    <item
+        android:id="@+id/btnSortAlphabetical"
+        android:title="Sort A-Z"/>
+    <item
+        android:id="@+id/btnSortPackedFirst"
+        android:title="Sort packed first"/>
+    <item
         android:id="@+id/btnAboutUs"
         android:title="About Us"/>
     <item

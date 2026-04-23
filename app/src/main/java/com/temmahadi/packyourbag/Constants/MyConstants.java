@@ -40,4 +40,8 @@ public class MyConstants {
     public static final String MY_SELECTIONS_CAMEL_CASE = "My Selections";
 
     public static final String FIRST_TIME_CAMEL_CASE = "firstTime";
+
+    public static final String TRIP_ID_INTENT = "tripId";
+
+    public static final String DEFAULT_TRIP_NAME = "My First Trip";
 }

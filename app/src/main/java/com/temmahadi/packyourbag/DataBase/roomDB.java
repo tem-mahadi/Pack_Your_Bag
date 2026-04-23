@@ -7,9 +7,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.temmahadi.packyourbag.Dao.itemDao;
+import com.temmahadi.packyourbag.Dao.tripDao;
+import com.temmahadi.packyourbag.Models.Trip;
 import com.temmahadi.packyourbag.Models.items;
 
-@Database(entities = items.class,version = 1,exportSchema = false)
+@Database(entities = {items.class, Trip.class},version = 2,exportSchema = false)
 public abstract class roomDB extends RoomDatabase {
     private static roomDB database;
     private static String DATABASE_NAME = "MyDB";
@@ -22,4 +24,5 @@ public abstract class roomDB extends RoomDatabase {
         return database;
     }
     public abstract itemDao mainDAO();
+    public abstract tripDao tripDAO();
 }

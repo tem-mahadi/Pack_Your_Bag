@@ -1,62 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="@drawable/wave2"
-    >
+    android:background="@drawable/splash_gradient">
 
-    <ImageView
+    <!-- Center cluster -->
+    <LinearLayout
+        android:id="@+id/centerContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/appIcon"
-        android:src="@drawable/app_icon_two"
         android:layout_centerInParent="true"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtAppName"
-        android:layout_below="@+id/appIcon"
-        android:layout_centerInParent="true"
-        android:text="Pack Your Bag"
-        android:textSize="45dp"
-        android:textStyle="bold|italic"
-        />
-    <TextView
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Icon with glow -->
+        <FrameLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center">
+
+            <View
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:background="@drawable/splash_icon_glow" />
+
+            <ImageView
+                android:id="@+id/appIcon"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:src="@drawable/app_icon_two"
+                android:contentDescription="@string/app_name" />
+        </FrameLayout>
+
+        <!-- App name -->
+        <TextView
+            android:id="@+id/txtAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/main_title"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05" />
+
+        <!-- Tagline -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Never forget what matters"
+            android:textColor="#B0FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <!-- Bottom branding -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="from"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/txtAppName"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        android:id="@+id/txtFrom"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtMe"
-        android:layout_below="@+id/txtFrom"
-        android:textSize="30dp"
-        android:textColor="@color/purple_soft"
-        android:text="TEM MAHADI"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        />
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="180dp"
-        android:src="@drawable/shopping_bag"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/txtMe"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/txtFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by"
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp" />
 
-
+        <TextView
+            android:id="@+id/txtMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="TEM MAHADI"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15" />
+    </LinearLayout>
 
 </RelativeLayout>
