@@ -79,15 +79,7 @@ To clone and run this application locally:
 4. **Build and Run:**
    - Sync the project with Gradle files.
    - Click the "Run" button or use `Shift + F10` to install it on your emulator or physical device.
-
-### 7. Screenshots
-*(Add screenshots of your application here by replacing the placeholder links)*
-<p align="center">
-  <img src="link_to_landing_page_screenshot" width="200" />
-  <img src="link_to_dashboard_screenshot" width="200" />
-  <img src="link_to_checklist_screenshot" width="200" />
-</p>
-
+     
 ### 8. License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
