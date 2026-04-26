@@ -2,7 +2,7 @@
 
 ## Travel Organizer App
 
-### 1. Project Introduction/Abstract
+### 1. Project Introduction
 
 The "Pack Your Bag" application is a comprehensive travel organizer designed to assist users in efficiently preparing for trips outside their home. Developed for Android using Java in Android Studio, the application provides users with a systematic way to create, manage, and track their packing lists. It aims to simplify the packing process and enhance the overall travel experience by ensuring users have all essentials and minimizing the likelihood of leaving items behind. 
 
@@ -68,7 +68,7 @@ To clone and run this application locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/PackYourBag.git
+   git clone https://github.com/tem-mahadi/Pack_Your_Bag.git
    ```
 2. **Open in Android Studio:**
    - Launch Android Studio.
