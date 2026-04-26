@@ -48,16 +48,16 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     private void checkSubscriptionAndNavigate() {
-//        try {
-//            if (SubscriptionManager.isSubscribed(this)) {
+        try {
+            if (SubscriptionManager.isSubscribed(this)) {
                 navigateToMain();
-//            } else {
-//                navigateToLanding();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            navigateToLanding();
-//        }
+            } else {
+                navigateToLanding();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            navigateToLanding();
+        }
     }
 
     private void navigateToMain() {

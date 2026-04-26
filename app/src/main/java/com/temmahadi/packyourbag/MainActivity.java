@@ -881,20 +881,16 @@ public class MainActivity extends AppCompatActivity {
         // Show loading
         Toast.makeText(this, getString(R.string.unsubscribing), Toast.LENGTH_SHORT).show();
 
-        // Format mobile number for BDApps API (requires 88 country code prefix)
-        String formattedMobile;
-        if (userMobile.startsWith("88")) {
-            formattedMobile = userMobile;
-        } else if (userMobile.startsWith("0")) {
-            formattedMobile = "88" + userMobile;
-        } else {
-            formattedMobile = "880" + userMobile;
+        // Match BMI unsubscribe behavior for subscriberId formatting.
+        String subscriberId = userMobile;
+        if (subscriberId.startsWith("0")) {
+            subscriberId = "88" + subscriberId;
         }
 
-        UnsubscribeRequest request = new UnsubscribeRequest(formattedMobile);
+        UnsubscribeRequest request = new UnsubscribeRequest(subscriberId);
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
-        apiService.unsubscribe(request).enqueue(new retrofit2.Callback<UnsubscribeResponse>() {
+        apiService.unsubscribeUser(request).enqueue(new retrofit2.Callback<UnsubscribeResponse>() {
             @Override
             public void onResponse(retrofit2.Call<UnsubscribeResponse> call, retrofit2.Response<UnsubscribeResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

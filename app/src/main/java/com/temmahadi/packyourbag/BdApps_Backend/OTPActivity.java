@@ -2,7 +2,6 @@ package com.temmahadi.packyourbag.BdApps_Backend;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -80,7 +79,7 @@ public class OTPActivity extends AppCompatActivity {
         btnSubmitOTP.setEnabled(false);
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<OTPRequest> call = apiService.verifyOTP(referenceNo, otp);
+        Call<OTPRequest> call = apiService.verifyOTP(otp, referenceNo);
 
         call.enqueue(new Callback<OTPRequest>() {
             @Override
@@ -89,10 +88,14 @@ public class OTPActivity extends AppCompatActivity {
                     String status = response.body().getsubscriptionStatus();
                     Log.d("OTPActivity", "Status: " + status);
 
-                    if ("S1000".equalsIgnoreCase(status)) {
+                    if ("S1000".equalsIgnoreCase(status) || 
+                        "INITIAL CHARGING PENDING".equalsIgnoreCase(status) || 
+                        "REGISTERED".equalsIgnoreCase(status)) {
                         goToMainActivity();
                     } else {
-                        pollOTPStatus(referenceNo, 0);
+                        progressBar.setVisibility(View.GONE);
+                        btnSubmitOTP.setEnabled(true);
+                        Toast.makeText(OTPActivity.this, "OTP Failed - Status: " + status, Toast.LENGTH_LONG).show();
                     }
                 } else {
                     progressBar.setVisibility(View.GONE);
@@ -108,41 +111,6 @@ public class OTPActivity extends AppCompatActivity {
                 Toast.makeText(OTPActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void pollOTPStatus(String referenceNo, int attempt) {
-        if (attempt >= 10) {
-            progressBar.setVisibility(View.GONE);
-            btnSubmitOTP.setEnabled(true);
-            Toast.makeText(this, "Verification timed out. Please try again.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        new Handler().postDelayed(() -> {
-            ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-            Call<OTPRequest> call = apiService.verifyOTP(referenceNo, "");
-
-            call.enqueue(new Callback<OTPRequest>() {
-                @Override
-                public void onResponse(Call<OTPRequest> call, Response<OTPRequest> response) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        String status = response.body().getsubscriptionStatus();
-                        if ("S1000".equalsIgnoreCase(status)) {
-                            goToMainActivity();
-                        } else {
-                            pollOTPStatus(referenceNo, attempt + 1);
-                        }
-                    } else {
-                        pollOTPStatus(referenceNo, attempt + 1);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<OTPRequest> call, Throwable t) {
-                    pollOTPStatus(referenceNo, attempt + 1);
-                }
-            });
-        }, 3000);
     }
 
     private void goToMainActivity() {

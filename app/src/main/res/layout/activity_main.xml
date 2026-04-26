@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/surface"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <!-- ═══════════ Immersive Header ═══════════ -->
